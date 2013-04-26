@@ -1,0 +1,28 @@
+<html>
+<body>
+<h1>gpbdemo</h1>
+<p>
+    This project shows how to create RESTful web service using Jersey and Google Protocol Buffers as communication protocol.
+    For easy testing and development, single endpoint (see net.jetensky.gpbdemo.service.MyResource#echo<a href="/p/gpbdemo/w/edit/MyResource">?</a>) may accepts both JSON and Google protocol buffers inputs, producing also JSON or GPB outputs. </p><p>This enables to utilize easy to understand JSON format during development and testing and powerful, fast and size efficient GPB protocol for real work. All in single endpoint: </p>
+<textarea rows="15" cols="300">
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON + ";charset=UTF-8" + "," + "application/x-protobuf")
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8" + "," + "application/x-protobuf")
+    @Path("/echo")
+    public Student echo(Student student) {
+    // Lets modify first name
+    return student.toBuilder()
+    .setFirstName(student.getFirstName() + " modified")
+    .build();
+    }
+</textarea>
+<h2>Links</h2>
+<ul>
+    <li><a href="/myresource">/myresource</a> - Sample Hello world! GET request returning text/plain</li>
+    <li><a href="/myresource/student">/myresource/student</a> - Sample GET request (old way) returning JSON</li>
+    <li><a href="/myresource/studentGPB">/myresource/studentGPB</a> - Sample GET request returning Google protocol buffer message</li>
+    <li><a href="/myresource/studentGPBjson">/myresource/studentGPBjson</a> - GET request to endpoint capable both returning JSON and Google protocol buffer message (based on Accept header)</li>
+    <li><a href="/test">Test form</a> - enables to call Google protocol buffer endpoint /myresource/echo by providing JSON input</li>
+</ul>
+</body>
+</html>

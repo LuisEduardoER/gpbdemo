@@ -1,0 +1,7 @@
+option java_package = "net.jetensky.gpbdemo.dto";
+message Student{
+	optional sint64 objectId = 1;
+	optional string firstName = 2;
+	optional string surName = 3;
+	optional string faculty = 4;
+}
